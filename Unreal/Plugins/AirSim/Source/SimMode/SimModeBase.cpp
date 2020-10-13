@@ -172,6 +172,7 @@ void ASimModeBase::EndPlay(const EEndPlayReason::Type EndPlayReason)
     FRecordingThread::killRecording();
     world_sim_api_.reset();
     api_provider_.reset();
+
     api_server_.reset();
     global_ned_transform_.reset();
 
@@ -201,7 +202,7 @@ void ASimModeBase::initializeTimeOfDay()
         sky_sphere_ = sky_spheres[0];
         static const FName sun_prop_name(TEXT("Directional light actor"));
         auto* p = sky_sphere_class_->FindPropertyByName(sun_prop_name);
-        UObjectProperty* sun_prop = Cast<UObjectProperty>(p);
+        FObjectProperty* sun_prop = Cast<FObjectProperty>(p);
         UObject* sun_obj = sun_prop->GetObjectPropertyValue_InContainer(sky_sphere_);
         sun_ = Cast<ADirectionalLight>(sun_obj);
         if (sun_)
@@ -458,7 +459,6 @@ void ASimModeBase::startApiServer()
         api_server_.reset();
 #else
         api_server_ = createApiServer();
-#endif
 
         try {
             api_server_->start(false, spawned_actors_.Num() + 4);
@@ -466,6 +466,7 @@ void ASimModeBase::startApiServer()
         catch (std::exception& ex) {
             UAirBlueprintLib::LogMessageString("Cannot start RpcLib Server", ex.what(), LogDebugLevel::Failure);
         }
+#endif
     }
     else
         UAirBlueprintLib::LogMessageString("API server is disabled in settings", "", LogDebugLevel::Informational);

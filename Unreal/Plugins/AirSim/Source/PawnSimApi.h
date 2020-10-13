@@ -150,7 +150,11 @@ private: //vars
     typedef msr::airlib::Kinematics Kinematics;
     typedef msr::airlib::Environment Environment;
 
+//temporary solution. Ashamed of myself :'(
+public:
     Params params_;
+
+private:
     common_utils::UniqueValueMap<std::string, APIPCamera*> cameras_;
     msr::airlib::GeoPoint home_geo_point_;
 

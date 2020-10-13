@@ -42,11 +42,16 @@ public:
     void setSubwindowCamera(int window_index, APIPCamera* camera);
     bool getSubwindowVisible(int window_index);
     void setSubwindowVisible(int window_index, bool is_visible);
-    
+
     ASimHUD();
     virtual void BeginPlay() override;
     virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
     virtual void Tick(float DeltaSeconds) override;
+
+    ASimModeBase* GetSimModeBase() const {
+        return simmode_;
+    };
+
 
 protected:
     virtual void setupInputBindings();

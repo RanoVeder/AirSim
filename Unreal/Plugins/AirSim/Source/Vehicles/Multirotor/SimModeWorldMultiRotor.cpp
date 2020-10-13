@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft Corporation. All rights reserved.
+    // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
 #include "SimModeWorldMultiRotor.h"
@@ -28,6 +28,7 @@ void ASimModeWorldMultiRotor::EndPlay(const EEndPlayReason::Type EndPlayReason)
 {
     //stop physics thread before we dismantle
     stopAsyncUpdator();
+    ((MultirotorPawnSimApi*)getVehicleSimApi())->getVehicleApi()->cancelLastTask();
 
     Super::EndPlay(EndPlayReason);
 }
