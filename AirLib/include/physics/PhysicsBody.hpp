@@ -12,6 +12,7 @@
 #include "Environment.hpp"
 #include <unordered_set>
 #include <exception>
+#include <mutex>
 
 namespace msr { namespace airlib {
 

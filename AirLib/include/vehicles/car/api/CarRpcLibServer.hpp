@@ -26,7 +26,7 @@ protected:
     }
 };
 
-#endif
 
 }} //namespace
+#endif
 #endif
