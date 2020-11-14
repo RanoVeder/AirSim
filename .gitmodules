@@ -1,0 +1,6 @@
+[submodule "AirLib/deps/rpclib"]
+	path = AirLib/deps/rpclib
+	url = https://github.com/rpclib/rpclib.git
+[submodule "AirLib/deps/eigen3"]
+	path = AirLib/deps/eigen3
+	url = https://gitlab.com/libeigen/eigen.git

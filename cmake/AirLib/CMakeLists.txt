@@ -11,7 +11,6 @@ include_directories(
   ${AIRSIM_ROOT}/AirLib/
   ${AIRSIM_ROOT}/AirLib/include
   ${AIRSIM_ROOT}/MavLinkCom/include
-  ${RPC_LIB_INCLUDES}
 )
 
 file(GLOB_RECURSE ${PROJECT_NAME}_sources 
@@ -26,8 +25,37 @@ file(GLOB_RECURSE ${PROJECT_NAME}_sources
 add_library(${PROJECT_NAME} STATIC ${${PROJECT_NAME}_sources})
 
 CommonTargetLink()
-target_link_libraries(${PROJECT_NAME} ${RPC_LIB})
-target_link_libraries(${PROJECT_NAME} MavLinkCom)
+target_link_libraries(${PROJECT_NAME} PUBLIC
+rpc
+MavLinkCom
+)
+
+
+set_target_properties(${PROJECT_NAME}
+    PROPERTIES
+    ARCHIVE_OUTPUT_DIRECTORY "${AIRSIM_ROOT}/Unreal/Plugins/AirSim/Source/AirLib/lib/x64"
+    LIBRARY_OUTPUT_DIRECTORY "${AIRSIM_ROOT}/Unreal/Plugins/AirSim/Source/AirLib/lib/x64"
+)
+
+add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+        "${AIRSIM_ROOT}/AirLib/include" "${AIRSIM_ROOT}/Unreal/Plugins/AirSim/Source/AirLib/include")
+
+
+add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+        "${AIRSIM_ROOT}/AirLib/deps/eigen3/Eigen" "${AIRSIM_ROOT}/Unreal/Plugins/AirSim/Source/AirLib/deps/eigen3/Eigen")
+
+add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+        "${AIRSIM_ROOT}/AirLib/deps/rpclib/include" "${AIRSIM_ROOT}/Unreal/Plugins/AirSim/Source/AirLib/deps/rpclib/include")
+
+add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+        "${AIRSIM_ROOT}/AirLib/src" "${AIRSIM_ROOT}/Unreal/Plugins/AirSim/Source/AirLib/src")
+
+
+
 
 #string(SUBSTRING ${CMAKE_STATIC_LINKER_FLAGS} 9 -1 "BUILD_PLATFORM")
 #find_package(Threads REQUIRED)

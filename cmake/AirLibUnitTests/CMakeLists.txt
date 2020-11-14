@@ -18,6 +18,7 @@ include_directories(
 AddExecutableSource()
 
 CommonTargetLink()
-target_link_libraries(${PROJECT_NAME} AirLib)
-target_link_libraries(${PROJECT_NAME} MavLinkCom)
-target_link_libraries(${PROJECT_NAME} ${RPC_LIB})
+target_link_libraries(${PROJECT_NAME} PUBLIC
+rpc
+AirLib
+MavLinkCom)
