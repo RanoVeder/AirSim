@@ -10,4 +10,11 @@ IF(UNIX)
     set(CMAKE_CXX_FLAGS "${RPC_LIB_DEFINES} ${CMAKE_CXX_FLAGS}")    
 ENDIF()
 
-add_subdirectory("${AIRSIM_ROOT}/external/rpclib/${RPCLIB_VERSION_FOLDER}" "${CMAKE_CURRENT_BINARY_DIR}/rpclib")
+add_subdirectory("${AIRSIM_ROOT}/AirLib/deps/rpclib" "${CMAKE_CURRENT_BINARY_DIR}/rpclib")
+
+set_target_properties(rpc
+    PROPERTIES
+    ARCHIVE_OUTPUT_DIRECTORY "${AIRSIM_ROOT}/AirLib/deps/rpclib/lib/x64"
+    LIBRARY_OUTPUT_DIRECTORY "${AIRSIM_ROOT}/AirLib/deps/rpclib/lib/x64"
+)
+

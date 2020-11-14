@@ -296,7 +296,6 @@ ModelManifest.xml
 /cmake/DroneServer/DroneServer
 cmake/AirLibUnitTests/Makefile
 external/
-deps/
 cmake_build/
 
 # Eclipse Project file

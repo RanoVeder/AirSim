@@ -11,7 +11,6 @@ SetupConsoleBuild()
 
 include_directories(
   ${AIRSIM_ROOT}/DroneShell
-  ${RPC_LIB_INCLUDES}
   ${AIRSIM_ROOT}/DroneShell/include;
   ${AIRSIM_ROOT}/AirLib/include
   ${AIRSIM_ROOT}/MavLinkCom/include
@@ -20,5 +19,6 @@ include_directories(
 AddExecutableSource()
 			
 CommonTargetLink()
-target_link_libraries(${PROJECT_NAME} AirLib)
-target_link_libraries(${PROJECT_NAME} ${RPC_LIB})
+target_link_libraries(${PROJECT_NAME} PUBLIC
+rpc
+AirLib)

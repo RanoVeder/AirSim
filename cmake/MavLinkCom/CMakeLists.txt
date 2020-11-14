@@ -50,7 +50,23 @@ ENDIF()
 
 
 
-add_library(MavLinkCom STATIC ${MAVLINK_SOURCES})
+add_library(${PROJECT_NAME} STATIC ${MAVLINK_SOURCES})
+
+
+set_target_properties(${PROJECT_NAME}
+    PROPERTIES
+    ARCHIVE_OUTPUT_DIRECTORY "${AIRSIM_ROOT}/AirLib/deps/MavLinkCom/lib/x64"
+    LIBRARY_OUTPUT_DIRECTORY "${AIRSIM_ROOT}/AirLib/deps/MavLinkCom/lib/x64"
+)
+
+
+add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+        "${AIRSIM_ROOT}/MavLinkCom/include" "${AIRSIM_ROOT}/AirLib/deps/MavLinkCom/include"
+)
+
+
+
 
 CommonTargetLink()
 
