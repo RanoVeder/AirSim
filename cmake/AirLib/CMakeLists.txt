@@ -39,20 +39,20 @@ set_target_properties(${PROJECT_NAME}
 
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_directory
-        "${AIRSIM_ROOT}/AirLib/include" "${AIRSIM_ROOT}/Unreal/Plugins/AirSim/Source/AirLib/include")
+        "${AIRSIM_ROOT}/AirLib/include" "${AIRSIM_ROOT}/Unreal/Plugins/AirSim/Source/AirLib/include" /E/H)
 
 
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_directory
-        "${AIRSIM_ROOT}/AirLib/deps/eigen3/Eigen" "${AIRSIM_ROOT}/Unreal/Plugins/AirSim/Source/AirLib/deps/eigen3/Eigen")
+        "${AIRSIM_ROOT}/AirLib/deps/eigen3/Eigen" "${AIRSIM_ROOT}/Unreal/Plugins/AirSim/Source/AirLib/deps/eigen3/Eigen" /E/H)
 
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_directory
-        "${AIRSIM_ROOT}/AirLib/deps/rpclib/include" "${AIRSIM_ROOT}/Unreal/Plugins/AirSim/Source/AirLib/deps/rpclib/include")
+        "${AIRSIM_ROOT}/AirLib/deps/rpclib/include" "${AIRSIM_ROOT}/Unreal/Plugins/AirSim/Source/AirLib/deps/rpclib/include" /E/H)
 
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_directory
-        "${AIRSIM_ROOT}/AirLib/src" "${AIRSIM_ROOT}/Unreal/Plugins/AirSim/Source/AirLib/src")
+        "${AIRSIM_ROOT}/AirLib/src" "${AIRSIM_ROOT}/Unreal/Plugins/AirSim/Source/AirLib/src" /E/H)
 
 
 
